@@ -15,37 +15,50 @@
     }
 
     body {
-      background-color: #000;
+      background: #000;
       color: #fff;
-      line-height: 1.6;
       padding: 20px;
+      scroll-behavior: smooth;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       margin-bottom: 50px;
     }
 
     .title {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       color: #0ef;
+      font-weight: bold;
+      animation: glowText 2s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from {
+        text-shadow: 0 0 5px #0ef, 0 0 10px #0ef;
+      }
+      to {
+        text-shadow: 0 0 15px #0ef, 0 0 25px #0ef;
+      }
     }
 
     .cv-btn {
       background: #0ef;
       color: #000;
-      padding: 8px 16px;
+      padding: 10px 20px;
       text-decoration: none;
-      border-radius: 20px;
-      box-shadow: 0 0 10px #0ef;
+      border-radius: 30px;
+      box-shadow: 0 0 10px #0ef, 0 0 20px #0ef inset;
       font-weight: 600;
-      transition: 0.3s ease;
+      transition: 0.4s ease;
     }
 
     .cv-btn:hover {
       background: #00c2d3;
+      box-shadow: 0 0 20px #00c2d3, 0 0 30px #00c2d3 inset;
     }
 
     .section {
@@ -66,6 +79,7 @@
     .section h2 {
       margin-bottom: 10px;
       color: #0ef;
+      font-size: 1.4rem;
     }
 
     .section img {
@@ -82,24 +96,25 @@
     }
 
     .section button {
-      background-color: #222;
+      background-color: #1a1a1a;
       color: #fff;
       border: none;
       padding: 10px 16px;
-      margin: 5px;
-      border-radius: 20px;
+      margin: 6px;
+      border-radius: 30px;
       cursor: pointer;
       font-size: 14px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 0 6px #0ef;
+      box-shadow: 0 0 10px #0ef;
       transition: 0.3s;
     }
 
     .section button:hover {
       background-color: #0ef;
       color: #000;
+      box-shadow: 0 0 15px #0ef, 0 0 25px #0ef inset;
     }
 
     footer {
@@ -107,35 +122,23 @@
       margin-top: 60px;
       padding: 20px 0;
       color: #888;
+      font-size: 14px;
     }
 
-    /* App-specific icon colors */
-    .section button i.fab.fa-facebook-f {
-      color: #1877f2;
-    }
+    /* Icon Colors */
+    .fa-facebook-f { color: #1877f2; }
+    .fa-phone-alt   { color: #25d366; }
+    .fa-whatsapp    { color: #25D366; }
+    .fa-envelope    { color: #D44638; }
+    .fa-telegram-plane { color: #229ED9; }
+    .fa-instagram   { color: #E1306C; }
+    .fa-youtube     { color: #FF0000; }
 
-    .section button i.fas.fa-phone-alt {
-      color: #25d366;
-    }
-
-    .section button i.fab.fa-youtube {
-      color: #FF0000;
-    }
-
-    .section button i.fab.fa-telegram-plane {
-      color: #229ED9;
-    }
-
-    .section button i.fab.fa-instagram {
-      color: #E1306C;
-    }
-
-    .section button i.fab.fa-whatsapp {
-      color: #25D366;
-    }
-
-    .section button i.fas.fa-envelope {
-      color: #D44638;
+    @media (max-width: 600px) {
+      .section button {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -149,7 +152,7 @@
   <div class="section">
     <img src="https://i.imgur.com/DRkb6eo.jpeg" alt="Profile Picture">
     <h2>About Me</h2>
-    <p>আমি রিয়াজ মাহমুদ আরমান, বাংলাদেশে থাকি। আমার প্রিয় গেম PUBG Mobile।</p>
+    <p>I'am Riaz Mahmud Arman , I live in Bangladesh । My Favourite Game  PUBG Mobile।</p>
   </div>
 
   <div class="section">
@@ -164,7 +167,7 @@
 
   <div class="section">
     <h2>Contact Me</h2>
-    <p>Email: riazmahmudarman@gmail.com</p>
+    <p>Email: <a href="mailto:riazmahmudarman@gmail.com" style="color:#0ef;">riazmahmudarman@gmail.com</a></p>
   </div>
 
   <div class="section">
@@ -202,14 +205,14 @@
   <script>
     function revealOnScroll() {
       const reveals = document.querySelectorAll('.section');
-      reveals.forEach(reveal => {
+      for (const section of reveals) {
         const windowHeight = window.innerHeight;
-        const revealTop = reveal.getBoundingClientRect().top;
+        const elementTop = section.getBoundingClientRect().top;
         const revealPoint = 100;
-        if (revealTop < windowHeight - revealPoint) {
-          reveal.classList.add('active');
+        if (elementTop < windowHeight - revealPoint) {
+          section.classList.add('active');
         }
-      });
+      }
     }
 
     window.addEventListener('scroll', revealOnScroll);
